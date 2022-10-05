@@ -1,0 +1,20 @@
+@mixin style($prop, $values: null) {
+  @if $values {
+    @each $key, $value in $values {
+      &[data-#{$prop}=#{$key}] {
+        @content($value)
+      }
+    }
+  } @else {
+    &[data-#{$prop}] {
+      @content;
+    }
+  }
+}
+
+@function get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
